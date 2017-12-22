@@ -1,0 +1,61 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <h1>survey</h1>
+    <form method="POST">
+
+        <div class="radioGroup">
+            <div class="question">Here is a question?</div>
+            <div class="choice">
+                <input name="rate1" type="radio" value=1>
+                <label>1</label>
+            </div>
+            <div class="choice">
+                <input name="rate1" type="radio" value=2>
+                <label>2</label>
+            </div>
+            <div class="choice">
+                <input name="rate1" type="radio" value=3>
+                <label>3</label>
+            </div>
+        </div>
+        <div class="radioGroup">
+            <div class="question">Here is a question?</div>
+            <div class="choice">
+                <input name="rate2" type="radio" value=1>
+                <label>1</label>
+            </div>
+            <div class="choice">
+                <input name="rate2" type="radio" value=2>
+                <label>2</label>
+            </div>
+            <div class="choice">
+                <input name="rate2" type="radio" value=3>
+                <label>3</label>
+            </div>
+        </div>
+
+        <button id="submitSurvey" type="submit">Submit</button>
+    </form>
+    <script type="text/javascript">
+        $('#submitSurvey').on("click", () => {
+            event.preventDefault();
+            let values = [];
+            let formData = $('form').serializeArray();
+            formData.forEach((item) => {
+                values.push(parseFloat(item.value));
+            })
+            console.log(values);
+        })
+    </script>
+</body>
+
+</html>
