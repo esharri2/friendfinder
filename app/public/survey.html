@@ -4,13 +4,19 @@
 
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="./css/styles.css">
     <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <h1>survey</h1>
     <form method="POST">
+        <div class="profileGroup">
+            <input name="name" type="text">
+            <label for="name">Name:</label>
+            <input name="picURL" type="url">
+            <label for="picURL">Avatar URL</label>
+        </div>
 
         <div class="radioGroup">
             <div class="question">Here is a question?</div>
@@ -48,12 +54,36 @@
     <script type="text/javascript">
         $('#submitSurvey').on("click", () => {
             event.preventDefault();
-            let values = [];
+            let profile = {
+                name: null,
+                photo: null,
+                scores: null
+            };
+            let scores = [];
             let formData = $('form').serializeArray();
             formData.forEach((item) => {
-                values.push(parseFloat(item.value));
+                if (item.name === "name") {
+                    profile.name = item.value;
+                } else if (item.name === "picURL") {
+                    profile.photo = item.value;
+                } else {
+                    scores.push(item.value );
+                }
+            });
+            profile.scores = scores;
+
+            $.ajax({
+                type: 'POST',
+                data: JSON.stringify(profile),
+                contentType: 'application/json',
+                url: "/api/friends"
+            }).done((data) => {
+                console.log("log in done...")
+                console.log(data)
             })
-            console.log(values);
+
+
+
         })
     </script>
 </body>

@@ -1,19 +1,56 @@
-const fs = require('fs');
+const fs = require("fs");
 
 function apiRoutes(app, path, directory) {
   app.get("/api/friends", (req, res) => {
     //display JSON of all friends
   });
 
+  function findMatch(newUser, users) {
+    let currentMatch = null;
+    let Match = function(name, photo, totalDifference) {
+      this.name = name;
+      this.photo = photo;
+      this.totalDifference = totalDifference;
+    };
+
+    function getTotalDifference(array) {
+      let totalDifference = 0;
+      array.forEach((item, index) => {
+        let diff = parseInt(item) - parseInt(newUser.scores[index]);
+        totalDifference += Math.abs(diff);
+      });
+      return totalDifference;
+    }
+
+    users.forEach(user => {
+      let totalDifference = getTotalDifference(user.scores);
+      console.log('this user name is ' )
+      if (!currentMatch) {
+        currentMatch = new Match(user.name, user.photo, totalDifference);
+      } else if (
+        totalDifference < currentMatch.totalDifference &&
+        newUser.name !== user.name
+      ) {
+        currentMatch = new Match(user.name, user.photo, totalDifference);
+      }
+    });
+
+    return currentMatch;
+  }
+
   app.post("/api/friends", (req, res) => {
-
-    fs.readFile(directory+"/app/data/friends.js", (err, data)=> {
-        if (err) throw err;    
-        //parse data, push users stuff to it
-
-    })
-
-    //incoming routes and compatibility logic
+    let dataPath = directory + "/app/data/friends.js";
+    fs.readFile(dataPath, "utf8", (err, data) => {
+      if (err) throw err;
+      console.log(data);
+      let newData = JSON.parse(data);
+      newData.push(req.body);
+      fs.writeFile(dataPath, JSON.stringify(newData), err => {
+        if (err) throw err;
+        let match = findMatch(req.body, newData);
+        res.json(match);
+      });
+    });
   });
 }
 
