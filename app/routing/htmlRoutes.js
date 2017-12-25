@@ -1,4 +1,6 @@
-function viewRoutes(app, path) {
+function viewRoutes(express, app, path) {
+
+
   app.get("/survey", (req, res) =>
     res.sendFile(path.join(__dirname, "../public/survey.html"))
   );

@@ -1,8 +1,12 @@
 const fs = require("fs");
 
 function apiRoutes(app, path, directory) {
+  let dataPath = directory + "/app/data/friends.js";
+
   app.get("/api/friends", (req, res) => {
-    //display JSON of all friends
+    fs.readFile(dataPath, "utf8", (err, data) => {
+      res.json(JSON.parse(data));
+    });
   });
 
   function findMatch(newUser, users) {
@@ -24,7 +28,6 @@ function apiRoutes(app, path, directory) {
 
     users.forEach(user => {
       let totalDifference = getTotalDifference(user.scores);
-      console.log('this user name is ' )
       if (!currentMatch) {
         currentMatch = new Match(user.name, user.photo, totalDifference);
       } else if (
@@ -39,10 +42,8 @@ function apiRoutes(app, path, directory) {
   }
 
   app.post("/api/friends", (req, res) => {
-    let dataPath = directory + "/app/data/friends.js";
     fs.readFile(dataPath, "utf8", (err, data) => {
       if (err) throw err;
-      console.log(data);
       let newData = JSON.parse(data);
       newData.push(req.body);
       fs.writeFile(dataPath, JSON.stringify(newData), err => {

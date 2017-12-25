@@ -4,53 +4,179 @@
 
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/styles.css">
     <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa|Fredoka+One|Open+Sans" rel="stylesheet">
 </head>
 
 <body>
-    <h1>survey</h1>
-    <form method="POST">
-        <div class="profileGroup">
-            <input name="name" type="text">
-            <label for="name">Name:</label>
-            <input name="picURL" type="url">
-            <label for="picURL">Avatar URL</label>
-        </div>
+    <div class="surveyContainer">
+        <h2>Tell us about yourself and we'll find a match just for you.</h2>
+        <form method="POST">
+            <div class="profileGroup">
+                <div class="group">
+                    <label for="name">Name: </label>
+                    <input name="name" type="text" autofocus>
+                </div>
+                <div class="group">
+                    <label for="picURL">Picture URL: </label>
+                    <input name="picURL" type="url">
+                </div>
+            </div>
+            <div class="radioGroup group">
+                <div class="question">I like to go to the gym.</div>
+                <div class="scale">
+                    <label>Strongly disagree</label>
+                    <div class="radios">
+                        <input name="rate1" type="radio" value=1>
+                        <input name="rate1" type="radio" value=2>
+                        <input name="rate1" type="radio" value=3>
+                        <input name="rate1" type="radio" value=4>
+                        <input name="rate1" type="radio" value=5>
+                    </div>
+                    <label>Strongly agree</label>
+                </div>
+            </div>
+            <div class="radioGroup group">
+                <div class="question">I cook the majority of my meals at home.</div>
+                <div class="scale">
+                    <label>Strongly disagree</label>
+                    <div class="radios">
+                        <input name="rate2" type="radio" value=1>
+                        <input name="rate2" type="radio" value=2>
+                        <input name="rate2" type="radio" value=3>
+                        <input name="rate2" type="radio" value=4>
+                        <input name="rate2" type="radio" value=5>
+                    </div>
+                    <label>Strongly agree</label>
+                </div>
+            </div>
+            <div class="radioGroup group">
+                <div class="question">I frequently read novels.</div>
+                <div class="scale">
+                    <label>Strongly disagree</label>
+                    <div class="radios">
+                        <input name="rate3" type="radio" value=1>
+                        <input name="rate3" type="radio" value=2>
+                        <input name="rate3" type="radio" value=3>
+                        <input name="rate3" type="radio" value=4>
+                        <input name="rate3" type="radio" value=5>
+                    </div>
+                    <label>Strongly agree</label>
+                </div>
+            </div>
+            <div class="radioGroup group">
+                <div class="question">I love the outdoors.</div>
+                <div class="scale">
+                    <label>Strongly disagree</label>
+                    <div class="radios">
+                        <input name="rate4" type="radio" value=1>
+                        <input name="rate4" type="radio" value=2>
+                        <input name="rate4" type="radio" value=3>
+                        <input name="rate4" type="radio" value=4>
+                        <input name="rate4" type="radio" value=5>
+                    </div>
+                    <label>Strongly agree</label>
+                </div>
+            </div>
+            <div class="radioGroup group">
+                <div class="question">I would like to go sky diving.</div>
+                <div class="scale">
+                    <label>Strongly disagree</label>
+                    <div class="radios">
+                        <input name="rate5" type="radio" value=1>
+                        <input name="rate5" type="radio" value=2>
+                        <input name="rate5" type="radio" value=3>
+                        <input name="rate5" type="radio" value=4>
+                        <input name="rate5" type="radio" value=5>
+                    </div>
+                    <label>Strongly agree</label>
+                </div>
+            </div>
+            <div class="radioGroup group">
+                <div class="question">I like to drive.</div>
+                <div class="scale">
+                    <label>Strongly disagree</label>
+                    <div class="radios">
+                        <input name="rate6" type="radio" value=1>
+                        <input name="rate6" type="radio" value=2>
+                        <input name="rate6" type="radio" value=3>
+                        <input name="rate6" type="radio" value=4>
+                        <input name="rate6" type="radio" value=5>
+                    </div>
+                    <label>Strongly agree</label>
+                </div>
+            </div>
+            <div class="radioGroup group">
+                <div class="question">I consider myself a homebody.</div>
+                <div class="scale">
+                    <label>Strongly disagree</label>
+                    <div class="radios">
+                        <input name="rate7" type="radio" value=1>
+                        <input name="rate7" type="radio" value=2>
+                        <input name="rate7" type="radio" value=3>
+                        <input name="rate7" type="radio" value=4>
+                        <input name="rate7" type="radio" value=5>
+                    </div>
+                    <label>Strongly agree</label>
+                </div>
+            </div>
+            <div class="radioGroup group">
+                <div class="question">I believe people are products of their circumstances.</div>
+                <div class="scale">
+                    <label>Strongly disagree</label>
+                    <div class="radios">
+                        <input name="rate8" type="radio" value=1>
+                        <input name="rate8" type="radio" value=2>
+                        <input name="rate8" type="radio" value=3>
+                        <input name="rate8" type="radio" value=4>
+                        <input name="rate8" type="radio" value=5>
+                    </div>
+                    <label>Strongly agree</label>
+                </div>
+            </div>
+            <div class="radioGroup group">
+                <div class="question">I enjoy horror films.</div>
+                <div class="scale">
+                    <label>Strongly disagree</label>
+                    <div class="radios">
+                        <input name="rate9" type="radio" value=1>
+                        <input name="rate9" type="radio" value=2>
+                        <input name="rate9" type="radio" value=3>
+                        <input name="rate9" type="radio" value=4>
+                        <input name="rate9" type="radio" value=5>
+                    </div>
+                    <label>Strongly agree</label>
+                </div>
+            </div>
+            <div class="radioGroup group">
+                <div class="question">I enjoy group outings.</div>
+                <div class="scale">
+                    <label>Strongly disagree</label>
+                    <div class="radios">
+                        <input name="rate10" type="radio" value=1>
+                        <input name="rate10" type="radio" value=2>
+                        <input name="rate10" type="radio" value=3>
+                        <input name="rate10" type="radio" value=4>
+                        <input name="rate10" type="radio" value=5>
+                    </div>
+                    <label>Strongly agree</label>
+                </div>
+            </div>
+            <button id="submitSurvey" type="submit">Submit</button>
+        </form>
+    </div>
 
-        <div class="radioGroup">
-            <div class="question">Here is a question?</div>
-            <div class="choice">
-                <input name="rate1" type="radio" value=1>
-                <label>1</label>
-            </div>
-            <div class="choice">
-                <input name="rate1" type="radio" value=2>
-                <label>2</label>
-            </div>
-            <div class="choice">
-                <input name="rate1" type="radio" value=3>
-                <label>3</label>
-            </div>
+    <div id="matchModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Your match is..</h2>
+            <p class="matchName"></p>
+            <img class="matchImg" src="https://dummyimage.com/200x200/000/fff&text=No+image+available+for+this+user." alt="No image available for this user."></img>
         </div>
-        <div class="radioGroup">
-            <div class="question">Here is a question?</div>
-            <div class="choice">
-                <input name="rate2" type="radio" value=1>
-                <label>1</label>
-            </div>
-            <div class="choice">
-                <input name="rate2" type="radio" value=2>
-                <label>2</label>
-            </div>
-            <div class="choice">
-                <input name="rate2" type="radio" value=3>
-                <label>3</label>
-            </div>
-        </div>
+    </div>
 
-        <button id="submitSurvey" type="submit">Submit</button>
-    </form>
     <script type="text/javascript">
         $('#submitSurvey').on("click", () => {
             event.preventDefault();
@@ -67,7 +193,7 @@
                 } else if (item.name === "picURL") {
                     profile.photo = item.value;
                 } else {
-                    scores.push(item.value );
+                    scores.push(item.value);
                 }
             });
             profile.scores = scores;
@@ -78,13 +204,14 @@
                 contentType: 'application/json',
                 url: "/api/friends"
             }).done((data) => {
-                console.log("log in done...")
-                console.log(data)
+                $('.matchName').text(data.name);
+                $('.matchImg').attr('src', data.photo);
+                $('#matchModal').fadeIn();
+
             })
-
-
-
         })
+
+        $(".close, .modal").on("click", () => $('#matchModal').fadeOut())
     </script>
 </body>
 
