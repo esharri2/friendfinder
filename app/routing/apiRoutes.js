@@ -3,6 +3,7 @@ const fs = require("fs");
 function apiRoutes(app, path, directory) {
   let dataPath = directory + "/app/data/friends.js";
 
+  //Display contents of friends.js as JSON
   app.get("/api/friends", (req, res) => {
     fs.readFile(dataPath, "utf8", (err, data) => {
       res.json(JSON.parse(data));
@@ -28,6 +29,8 @@ function apiRoutes(app, path, directory) {
 
     users.forEach(user => {
       let totalDifference = getTotalDifference(user.scores);
+      //Set first user to currentMatch
+      //or set new match if total difference is lower than currentMatch
       if (!currentMatch) {
         currentMatch = new Match(user.name, user.photo, totalDifference);
       } else if (
