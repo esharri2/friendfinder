@@ -17,11 +17,11 @@
             <div class="profileGroup">
                 <div class="group">
                     <label for="name">Name: </label>
-                    <input name="name" type="text" autofocus>
+                    <input id="name" name="name" type="text" autofocus>
                 </div>
                 <div class="group">
                     <label for="picURL">Picture URL: </label>
-                    <input name="picURL" type="url">
+                    <input placeholder="http://www.example.com/image.png" id="picURL" name="picURL" type="url">
                 </div>
             </div>
             <div class="radioGroup group">
@@ -29,7 +29,7 @@
                 <div class="scale">
                     <label>Strongly disagree</label>
                     <div class="radios">
-                        <input name="rate1" type="radio" value=1>
+                        <input checked name="rate1" type="radio" value=1>
                         <input name="rate1" type="radio" value=2>
                         <input name="rate1" type="radio" value=3>
                         <input name="rate1" type="radio" value=4>
@@ -43,7 +43,7 @@
                 <div class="scale">
                     <label>Strongly disagree</label>
                     <div class="radios">
-                        <input name="rate2" type="radio" value=1>
+                        <input checked name="rate2" type="radio" value=1>
                         <input name="rate2" type="radio" value=2>
                         <input name="rate2" type="radio" value=3>
                         <input name="rate2" type="radio" value=4>
@@ -57,7 +57,7 @@
                 <div class="scale">
                     <label>Strongly disagree</label>
                     <div class="radios">
-                        <input name="rate3" type="radio" value=1>
+                        <input checked name="rate3" type="radio" value=1>
                         <input name="rate3" type="radio" value=2>
                         <input name="rate3" type="radio" value=3>
                         <input name="rate3" type="radio" value=4>
@@ -71,7 +71,7 @@
                 <div class="scale">
                     <label>Strongly disagree</label>
                     <div class="radios">
-                        <input name="rate4" type="radio" value=1>
+                        <input checked name="rate4" type="radio" value=1>
                         <input name="rate4" type="radio" value=2>
                         <input name="rate4" type="radio" value=3>
                         <input name="rate4" type="radio" value=4>
@@ -85,7 +85,7 @@
                 <div class="scale">
                     <label>Strongly disagree</label>
                     <div class="radios">
-                        <input name="rate5" type="radio" value=1>
+                        <input checked name="rate5" type="radio" value=1>
                         <input name="rate5" type="radio" value=2>
                         <input name="rate5" type="radio" value=3>
                         <input name="rate5" type="radio" value=4>
@@ -99,7 +99,7 @@
                 <div class="scale">
                     <label>Strongly disagree</label>
                     <div class="radios">
-                        <input name="rate6" type="radio" value=1>
+                        <input checked name="rate6" type="radio" value=1>
                         <input name="rate6" type="radio" value=2>
                         <input name="rate6" type="radio" value=3>
                         <input name="rate6" type="radio" value=4>
@@ -113,7 +113,7 @@
                 <div class="scale">
                     <label>Strongly disagree</label>
                     <div class="radios">
-                        <input name="rate7" type="radio" value=1>
+                        <input checked name="rate7" type="radio" value=1>
                         <input name="rate7" type="radio" value=2>
                         <input name="rate7" type="radio" value=3>
                         <input name="rate7" type="radio" value=4>
@@ -127,7 +127,7 @@
                 <div class="scale">
                     <label>Strongly disagree</label>
                     <div class="radios">
-                        <input name="rate8" type="radio" value=1>
+                        <input checked name="rate8" type="radio" value=1>
                         <input name="rate8" type="radio" value=2>
                         <input name="rate8" type="radio" value=3>
                         <input name="rate8" type="radio" value=4>
@@ -141,7 +141,7 @@
                 <div class="scale">
                     <label>Strongly disagree</label>
                     <div class="radios">
-                        <input name="rate9" type="radio" value=1>
+                        <input checked name="rate9" type="radio" value=1>
                         <input name="rate9" type="radio" value=2>
                         <input name="rate9" type="radio" value=3>
                         <input name="rate9" type="radio" value=4>
@@ -155,7 +155,7 @@
                 <div class="scale">
                     <label>Strongly disagree</label>
                     <div class="radios">
-                        <input name="rate10" type="radio" value=1>
+                        <input checked name="rate10" type="radio" value=1>
                         <input name="rate10" type="radio" value=2>
                         <input name="rate10" type="radio" value=3>
                         <input name="rate10" type="radio" value=4>
@@ -180,38 +180,58 @@
     <script type="text/javascript">
         $('#submitSurvey').on("click", () => {
             event.preventDefault();
-            let profile = {
-                name: null,
-                photo: null,
-                scores: null
-            };
-            let scores = [];
             let formData = $('form').serializeArray();
-            formData.forEach((item) => {
-                if (item.name === "name") {
-                    profile.name = item.value;
-                } else if (item.name === "picURL") {
-                    profile.photo = item.value;
-                } else {
-                    scores.push(item.value);
-                }
-            });
-            profile.scores = scores;
+            let formName = $('input[name="name"]').val();
+            let formPhoto = $('input[name="picURL"]').val();
+            console.log(formData);
+            if (!formName) {
+                alert("Please enter your name.");
+                scrollToElement('name');
+            } else if (formPhoto && $('input[name="picURL"]').is(":invalid")) {
+                alert("Please enter a properly formatted URL for your photo.");
+                scrollToElement("picURL");
+            } else {
+                let profile = {
+                    name: null,
+                    photo: null,
+                    scores: null
+                };
+                let scores = [];
+                formData.forEach((item) => {
+                    if (item.name === "name") {
+                        profile.name = item.value;
+                    } else if (item.name === "picURL") {
+                        profile.photo = item.value;
+                    } else {
+                        scores.push(item.value);
+                    }
+                });
+                profile.scores = scores;
 
-            $.ajax({
-                type: 'POST',
-                data: JSON.stringify(profile),
-                contentType: 'application/json',
-                url: "/api/friends"
-            }).done((data) => {
-                $('.matchName').text(data.name);
-                $('.matchImg').attr('src', data.photo);
-                $('#matchModal').fadeIn();
+                $.ajax({
+                    type: 'POST',
+                    data: JSON.stringify(profile),
+                    contentType: 'application/json',
+                    url: "/api/friends"
+                }).done((data) => {
+                    $('.matchName').text(data.name);
+                    $('.matchImg').attr('src', data.photo);
+                    $('#matchModal').fadeIn();
+                })
+            }
 
-            })
         })
 
-        $(".close, .modal").on("click", () => $('#matchModal').fadeOut())
+        $(".close, .modal").on("click", () => $('#matchModal').fadeOut());
+
+        function scrollToElement(id) {
+            const OFFSET = 0;
+            $('html, body').animate({
+                scrollTop: $(`#${id}`).offset().top + OFFSET
+            }, 300);
+            $(`#${id}`).focus();
+
+        }
     </script>
 </body>
 
